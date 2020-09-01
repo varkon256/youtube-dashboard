@@ -1,0 +1,44 @@
+.commentBoxContainer{
+  max-width: 500px;
+  background: rgb(240, 240, 240);
+  display: flex;
+  margin-top: 100px;
+  margin-left: 50px;
+  padding: 20px;
+  border-radius: 5px;
+  flex-direction: column;
+}
+
+.commentBox{
+  background: rgb(255, 255, 255);
+  padding: 5px;
+  display: flex;
+  margin: 5px;
+  box-shadow: rgba(0, 0, 0, 0.185) 0 0 10px;
+  transition: all 100ms ease-in-out;
+  
+}
+.commentBox:hover{
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.288) 0 10 50px;
+
+}
+
+.dp{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 5px;
+}
+.form{
+  background: rgba(104, 104, 104, 0.452) ;
+  padding: 10px;
+  margin: 0 0 20px 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.authorName{
+  font-size: 20px;
+  font-weight: bold;
+}
