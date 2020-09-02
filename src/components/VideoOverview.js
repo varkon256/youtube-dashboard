@@ -1,23 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-
-const StyledVideoOverview = styled.div`
-  height: 310px;
-  width: 275px;
-  position: absolute;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
-  background: #ffffff;
-  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
+import Tile from './Tile.styled';
+const StyledVideoOverview = styled(Tile)`
+  height: 300px;
+  max-width: 275px;
+  flex-grow: 1;
+  margin: 10px;
+  padding: 20px;
   h2 {
-    position: absolute;
-    width: 125px;
-    height: 20px;
-    left: 22px;
-    top: 15px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -25,12 +15,9 @@ const StyledVideoOverview = styled.div`
     line-height: 21px;
     color: #343434;
   }
+    
   img {
-    width: 230px;
-    height: 150px;
-    left: 22px;
-    position: absolute;
-    top: 60px;
+    width: 100%;
     border-radius: 5px;
   }
   p {
@@ -39,27 +26,21 @@ const StyledVideoOverview = styled.div`
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
-    position: absolute;
-    top: 205px;
+    margin-bottom: 0px;
     color: black;
-    left: 22px;
   }
   .Views {
-    position: absolute;
     font-family: Roboto;
     font-style: normal;
-    top: 235px;
-    left: 22px;
     font-size: 12px;
     color: grey;
   }
   div {
-    position: absolute;
-    top: 250px;
+    margin: 5px;
     display: flex;
     flex-direction: row;
-    padding: 10px;
-    left: 30px;
+    padding: 5px;
+    justify-content: center;
     text-align: center;
     
     .Card {
