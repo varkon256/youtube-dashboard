@@ -9,18 +9,18 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 import csv
 import json
+from dateutil.parser import parse
 
 
-CLIENT_SECRETS_FILE = "desktop.json" #file
-
+CLIENT_SECRETS_FILE = "/Users/kondavarsha/Downloads/client_secret_1.json"
 SCOPES = "https://www.googleapis.com/auth/youtube.force-ssl"
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
 
 def get_authenticated_service():
     credentials = None
-    if os.path.exists('token.pcikle'):
-        with open('token.pcikle','rb') as token:
+    if os.path.exists('token.pickle'):
+        with open('token.pickle','rb') as token:
             credentials = pickle.load(token)
 
     if not credentials or not credentials.valid:
@@ -47,20 +47,37 @@ def get_video_comments(service, **kwargs):
         for item in results['items']:
             comment = item['snippet']['topLevelComment']['snippet']['textDisplay']
             comments.append(comment)
-        # Check if another page exists
         if 'nextPageToken' in results:
             kwargs['pageToken'] = results['nextPageToken']
             results = service.commentThreads().list(**kwargs).execute()
         else:
             break
-    #write_to_csv(comments)
-
     return comments
 
-def run_script():
+def get_video_details(service, **kwargs):
+    results = service.videos().list(**kwargs).execute()
+    details = {}
+    while results:
+        for item in results['items']:
+            details['title'] = item['snippet']['title']
+            details['thumbnail'] = item['snippet']['thumbnails']['medium']['url']
+            details['viewCount'] = item['statistics']['viewCount']
+            details['likeCount'] = item['statistics']['likeCount']
+            details['commentCount'] = item['statistics']['commentCount']
+            dt = parse(item['snippet']['publishedAt'])
+            details['date'] = dt.strftime('%d %b %Y')
+        break
+    return details
+
+def run_details_script(videoId):
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     service = get_authenticated_service()
-    videoId = input('Enter video ID')
+    details = get_video_details(service, part=['snippet', 'statistics'], id=videoId)
+    return details
+ 
+def run_script(videoId):
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+    service = get_authenticated_service()
     comments = get_video_comments(service, part='snippet', videoId=videoId, textFormat='plainText')
     return comments
 
