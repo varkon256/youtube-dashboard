@@ -5,7 +5,7 @@ import SentimentAnalysis from './SentimentAnalysis';
 function Dashboard (){
   return (
     <div>
-        <VideoOverview/>
+        {/* <VideoOverview/> */}
         <SentimentAnalysis/>
     </div>
   );
