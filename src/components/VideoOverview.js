@@ -13,18 +13,15 @@ const StyledVideoOverview = styled.div`
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   h2 {
-    position: absolute;
-    width: 125px;
-    height: 20px;
-    left: 22px;
-    top: 15px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
     line-height: 21px;
     color: #343434;
-  }
+    margin: 20px;
+    }
+    
   img {
     width: 230px;
     height: 150px;
