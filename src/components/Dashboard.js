@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import VideoOverview from './VideoOverview';
 import VideoHighlights from './VideoHighlights'
 import Tile from "./Tile.styled";
+import QuestionCategories from './QuestionCategories'
+import SentimentAnalysis from './SentimentAnalysis';
 const DashboardContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -14,9 +16,9 @@ function Dashboard (){
   return (
     <DashboardContainer>
         <VideoOverview/>
-        <Tile/>
+        <SentimentAnalysis />
         <VideoHighlights />
-        <Tile/>
+        <QuestionCategories />
     </DashboardContainer>  
   );
 }
