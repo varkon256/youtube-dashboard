@@ -6,6 +6,8 @@ const Tile = styled.div`
   border-radius: 15px;
   height: 310px;
   width: 300px;
+  flex-grow: 3;
+  margin: 10px;
 `;
 
 export default Tile;

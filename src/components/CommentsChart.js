@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
-import {line, Line} from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
 const StyledCommentsChart = styled.div`
     width: 100%;
 `;
@@ -13,7 +13,6 @@ function CommentsChart(props) {
     gradientFill.addColorStop(1, "rgba(233, 158, 158, 1)");
     gradientFill.addColorStop(0, "rgba(255, 215, 215, 0.31)");
     let chart = ()=>{
-        console.log("Chart init");
         setChartData({
             labels: ["0:00",'1:30','2:00','2:30','3:00'],
             datasets: [
@@ -44,9 +43,11 @@ function CommentsChart(props) {
             <div>
                 <Line 
                     data={ chartData }
+                    height={300}
                     options= {
                         {
-                            responsive: true
+                            responsive: true,
+                            maintainAspectRatio: false
                         }
                     }
                     />

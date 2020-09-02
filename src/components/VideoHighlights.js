@@ -3,11 +3,13 @@ import '../App.css';
 import styled from "styled-components";
 import CommentsCharts from './CommentsChart'
 const StyledVideoHighlights = styled.div`
-  max-width: 100%;
+  width: 100%;
   background: #ffffff;
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-
+  margin: 10px;
+  padding: 20px;
+  flex-grow: 4;
   h2{
     font-family: Roboto;
     font-style: normal;
@@ -15,10 +17,10 @@ const StyledVideoHighlights = styled.div`
     font-size: 18px;
     line-height: 21px;
     color: #343434;
-    margin: 20px;
   }
   .content{
     margin: 10%;
+    max-width: 80%
   }
 `;
 

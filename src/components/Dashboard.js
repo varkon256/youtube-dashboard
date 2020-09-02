@@ -7,13 +7,16 @@ const DashboardContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin: 20px;
 `
 function Dashboard (){
   return (
     <DashboardContainer>
         <VideoOverview/>
+        <Tile/>
         <VideoHighlights />
+        <Tile/>
     </DashboardContainer>  
   );
 }

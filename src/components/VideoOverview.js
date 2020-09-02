@@ -2,12 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import Tile from './Tile.styled';
 const StyledVideoOverview = styled(Tile)`
-  height: 310px;
-  width: 275px;
-  left: 0%;
-  right: 0%;
-  top: 0%;
-  bottom: 0%;
+  height: 300px;
+  max-width: 275px;
+  flex-grow: 1;
+  margin: 10px;
+  padding: 20px;
   h2 {
     font-family: Roboto;
     font-style: normal;
@@ -15,15 +14,10 @@ const StyledVideoOverview = styled(Tile)`
     font-size: 18px;
     line-height: 21px;
     color: #343434;
-    margin: 20px;
-    }
+  }
     
   img {
-    width: 230px;
-    height: 150px;
-    left: 22px;
-    position: relative;
-    top: 20px;
+    width: 100%;
     border-radius: 5px;
   }
   p {
@@ -32,27 +26,21 @@ const StyledVideoOverview = styled(Tile)`
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
-    position: relative;
-    margin-bottom: 10px;
-    top: 10px;
+    margin-bottom: 0px;
     color: black;
-    left: 22px;
   }
   .Views {
-    position: relative;
     font-family: Roboto;
     font-style: normal;
-    left: 22px;
     font-size: 12px;
     color: grey;
   }
   div {
-    position: relative;
-    margin-bottom: 5px;
+    margin: 5px;
     display: flex;
     flex-direction: row;
     padding: 5px;
-    left: 30px;
+    justify-content: center;
     text-align: center;
     .Card {
       display: inline;
