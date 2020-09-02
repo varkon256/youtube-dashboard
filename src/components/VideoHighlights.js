@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import styled from "styled-components";
 import CommentsCharts from './CommentsChart'
+import CommentsList from './CommentsList'
 const StyledVideoHighlights = styled.div`
   width: 100%;
   background: #ffffff;
@@ -31,7 +32,7 @@ function VideoHighlights(props) {
             <h2>Video Highlights</h2>
             <div class="content">
               <CommentsCharts />
-              <div>Comments</div>
+              <CommentsList />
             </div>
           </section>
         </StyledVideoHighlights>
