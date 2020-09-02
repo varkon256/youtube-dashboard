@@ -1,19 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-
-const StyledVideoOverview = styled.div`
+import Tile from './Tile.styled';
+const StyledVideoOverview = styled(Tile)`
   height: 310px;
   width: 275px;
-  position: absolute;
   left: 0%;
   right: 0%;
   top: 0%;
   bottom: 0%;
-  background: #ffffff;
-  box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
   h2 {
-    position: absolute;
+    position: relative;
     width: 125px;
     height: 20px;
     left: 22px;
@@ -29,8 +25,8 @@ const StyledVideoOverview = styled.div`
     width: 230px;
     height: 150px;
     left: 22px;
-    position: absolute;
-    top: 60px;
+    position: relative;
+    top: 20px;
     border-radius: 5px;
   }
   p {
@@ -39,26 +35,26 @@ const StyledVideoOverview = styled.div`
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
-    position: absolute;
-    top: 205px;
+    position: relative;
+    margin-bottom: 10px;
+    top: 10px;
     color: black;
     left: 22px;
   }
   .Views {
-    position: absolute;
+    position: relative;
     font-family: Roboto;
     font-style: normal;
-    top: 235px;
     left: 22px;
     font-size: 12px;
     color: grey;
   }
   div {
-    position: absolute;
-    top: 250px;
+    position: relative;
+    margin-bottom: 5px;
     display: flex;
     flex-direction: row;
-    padding: 10px;
+    padding: 5px;
     left: 30px;
     text-align: center;
     .Card {
