@@ -61,6 +61,7 @@ const StyledVideoOverview = styled.div`
     padding: 10px;
     left: 30px;
     text-align: center;
+    
     .Card {
       display: inline;
       width: 79px;
@@ -90,7 +91,7 @@ const StyledVideoOverview = styled.div`
 
 function VideoOverview() {
   return (
-    <>
+    <div>
       <StyledVideoOverview>
         <h2>Video Overview</h2>
         <img
@@ -104,7 +105,7 @@ function VideoOverview() {
           <span className = "Card"><h4>67k</h4>Comments</span>
         </div>
       </StyledVideoOverview>
-    </>
+    </div>
   );
 }
 

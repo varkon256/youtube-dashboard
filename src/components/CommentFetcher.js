@@ -3,18 +3,19 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import '../App.css';
 import CommentBox from './CommentBox';
+
 function CommentFetcher() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [maxResult, setMaxResult] = useState (1);
     const [comments, setComments] = useState([]);
 
-    function handleFetch(max) {
 
-        
+    function handleFetch(max) {
     }
+
     useEffect(() => {
-        fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=10&order=relevance&videoId=_VB39Jo8mAQ&key=AIzaSyCapt-WkmhFfuvLDDlfoMk86hBsaAesLrI`)
+        fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&maxResults=20&order=time&videoId=rBu0BRTx2x8&key=AIzaSyCapt-WkmhFfuvLDDlfoMk86hBsaAesLrI`)
         .then(res => res.json())
         .then(
             (result) => {
@@ -27,12 +28,13 @@ function CommentFetcher() {
             }
         )
     }, [])
+
         return (
             <div className="commentBoxContainer">
                 <div className="form">
                     <input type="text" placeholder="video link"></input>
                     <input type="number" min="0" placeholder="no. results"></input>
-                    <button onClick={handleFetch(maxResult)} >Fetch</button>        
+                    <button onClick={handleFetch(maxResult)}>Fetch</button>        
                 </div>
                 <div>
                     {
@@ -44,7 +46,7 @@ function CommentFetcher() {
                                 date = {comment.snippet.topLevelComment.snippet.publishedAt}
                                 author = {comment.snippet.topLevelComment.snippet.authorDisplayName }
                                 dpUrl = {comment.snippet.topLevelComment.snippet.authorProfileImageUrl }
-                                comment = {comment.snippet.topLevelComment.snippet.textOriginal}
+                                comment = {comment.snippet.topLevelComment.snippet.textOriginal} // comment
                                 likes = {comment.snippet.topLevelComment.snippet.likeCount}
                                 replies = {comment.snippet.totalReplyCount}
 
@@ -56,9 +58,5 @@ function CommentFetcher() {
             </div>
         );
 }
-
-
-
-
 
 export default CommentFetcher;
