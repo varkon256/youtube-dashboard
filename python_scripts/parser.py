@@ -1,4 +1,4 @@
-#pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 """Install all the requirements and importations"""
 import os
 import pickle
@@ -8,19 +8,21 @@ from googleapiclient.discovery import build
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 import csv
-import json
 from dateutil.parser import parse
+from textblob import TextBlob
 
 
-CLIENT_SECRETS_FILE = "/Users/kondavarsha/Downloads/client_secret_1.json"
+
+CLIENT_SECRETS_FILE = "desktop.json" #make sure the folder is in the same directory
 SCOPES = "https://www.googleapis.com/auth/youtube.force-ssl"
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
 
+
 def get_authenticated_service():
     credentials = None
     if os.path.exists('token.pickle'):
-        with open('token.pickle','rb') as token:
+        with open('token.pickle', 'rb') as token:
             credentials = pickle.load(token)
 
     if not credentials or not credentials.valid:
@@ -31,7 +33,8 @@ def get_authenticated_service():
             credentials = flow.run_console()
         with open('token.pickle', 'wb') as token:
             pickle.dump(credentials, token)
-    return build(API_SERVICE_NAME, API_VERSION, credentials= credentials)
+    return build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
+
 
 def write_to_csv(comments):
     with open('comments.csv', 'w') as comments_file:
@@ -39,6 +42,7 @@ def write_to_csv(comments):
         comments_writer.writerow(['Video ID', 'Title', 'Comment'])
         for row in comments:
             comments_writer.writerow(list(row))
+
 
 def get_video_comments(service, **kwargs):
     comments = []
@@ -53,6 +57,7 @@ def get_video_comments(service, **kwargs):
         else:
             break
     return comments
+
 
 def get_video_details(service, **kwargs):
     results = service.videos().list(**kwargs).execute()
@@ -69,17 +74,31 @@ def get_video_details(service, **kwargs):
         break
     return details
 
+
 def run_details_script(videoId):
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     service = get_authenticated_service()
     details = get_video_details(service, part=['snippet', 'statistics'], id=videoId)
     return details
- 
+
+
 def run_script(videoId):
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     service = get_authenticated_service()
     comments = get_video_comments(service, part='snippet', videoId=videoId, textFormat='plainText')
     return comments
+
+
+def GetPolarity(videoId):
+    comms = run_script(videoId)
+    pols = []
+    for comm in comms:
+        pols.append(TextBlob(comm).sentiment.polarity)
+    return pols
+
+
+
+
 
 
 if __name__ == "__main__":
