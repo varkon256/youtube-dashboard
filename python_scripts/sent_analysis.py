@@ -40,4 +40,4 @@ plt.xticks(x_locs, x_labels)
 plt.yticks([])
 plt.rcParams["figure.figsize"] = 10,4
 plt.savefig('./images/sent_analysis.png', bbox_inches='tight')
-plt.show()
+#plt.show()

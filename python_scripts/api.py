@@ -10,12 +10,13 @@ timestamps = {}
 items = {}
 
 class YoutubeComments(Resource):
+
   def get(self):
     return items['video_id']
 
   def put(self):
     items['video_id'] = request.form['id']
-    items['comments'] = parser.run_script(items['video_id'])
+    items['comments'] = parser.run_details_script(items['video_id'])
     return items['comments']
 
 class CommentTimestamp(Resource):
@@ -40,12 +41,22 @@ class VideoDetails(Resource):
     items['details'] = parser.run_details_script(items['video_id'])
     return jsonify(items['details'])
 
-api.add_resource(YoutubeComments, 
-                  '/comments/')
+class PolarityScore(Resource):
+  def get(self):
+    return items['video_id']
+  def put(self):
+    items['video_id'] = request.form['id']
+    items['polarity_score'] = parser.GetPolarity(items['video_id'])
+    return jsonify(items['polarity_score'])
+
+
+api.add_resource(YoutubeComments,'/comments/')
 
 api.add_resource(CommentTimestamp, '/comments/timestamp/')
 
 api.add_resource(VideoDetails, '/details/')
+
+api.add_resource(PolarityScore, '/score/')
 
 if __name__ == '__main__':
   app.run(debug=True)
