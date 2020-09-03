@@ -1,12 +1,13 @@
 from textblob import TextBlob
 import matplotlib.pyplot as plt
 
-# save YT comments here...
-comments = []  # Expecting an array with one element. Each comment separated by '/n'
 
-comms = comments[0].splitlines()
+# open and read comments csv file
+with open('comments.csv') as file:
+    comms = file.readlines()
+    # print(comms)
+
 pols = []  # Array with the comments' polarity scores
-
 for comm in comms:
     pols.append(TextBlob(comm).sentiment.polarity)
 
@@ -39,4 +40,4 @@ plt.xticks(x_locs, x_labels)
 plt.yticks([])
 plt.rcParams["figure.figsize"] = 10,4
 plt.savefig('./images/sent_analysis.png', bbox_inches='tight')
-#plt.show()
+plt.show()

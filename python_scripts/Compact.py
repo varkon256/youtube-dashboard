@@ -1,4 +1,4 @@
-#pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 """Install all the requirements and importations"""
 import os
 import pickle
@@ -66,6 +66,10 @@ def run_script():
 
 
 if __name__ == "__main__":
-    final_comment = run_script()
-    print(final_comment)
-    print()
+    comments_final = run_script()  # list type
+    with open('comments.csv', 'w', encoding='utf8', newline='') as file:
+        output_writer = csv.writer(file)
+        for line in comments_final:
+            output_writer.writerow([line])
+
+    # print(comments_final)
