@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import VideoOverview from './VideoOverview';
 import VideoHighlights from './VideoHighlights'
-import Tile from "./Tile.styled";
 import QuestionCategories from './QuestionCategories'
 import SentimentAnalysis from './SentimentAnalysis';
+import {useParams} from 'react-router-dom';
 
 const DashboardContainer = styled.div`
   display: flex;
@@ -14,11 +14,28 @@ const DashboardContainer = styled.div`
   margin: 20px;
 `
 function Dashboard (){
+  let {id} = useParams();
+  const [Data, setData] = useState({});
+  useEffect(() => {
+    const url = 'http://localhost:5000/init/';
+    fetch(url, {
+      method: 'PUT',
+      body: new URLSearchParams({id: id})
+    })
+    .then((response) => response.json())
+    .then((data) => setData(data));
+  }, [])
   return (
     <DashboardContainer>
-        <VideoOverview/>
-        <SentimentAnalysis />
-        <VideoHighlights />
+      {typeof Data.details !== 'undefined' && (
+        <VideoOverview details = {Data.details}/>
+      )}
+      {typeof Data.sentiment !== 'undefined' && (
+        <SentimentAnalysis sentiment = {Data.sentiment}/> 
+      )}
+      {Data !== {} && typeof Data !== 'undefined' && (
+        <VideoHighlights data = {Data}/> 
+      )}
         <QuestionCategories />
     </DashboardContainer>  
   );

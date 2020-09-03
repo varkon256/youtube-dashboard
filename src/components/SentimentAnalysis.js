@@ -6,6 +6,7 @@ import SentimentAnalysisChart from './SentimentAnalysisChart';
 
 const StyledSentimentAnalysis = styled.div`
     max-width: 100%;
+    height: 300px;
     background: #ffffff;
     box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
@@ -22,7 +23,7 @@ const StyledSentimentAnalysis = styled.div`
     margin-bottom: 0;
     }
     .content{
-    margin: 10%;
+    margin: 5%;
     max-width: 80%
     }
     .help{  
@@ -56,22 +57,31 @@ function SentimentAnalysis(props) {
             <section>
                 <h2>Viewer Sentiment Analysis</h2>
                 <div class="content">
-                    <SentimentAnalysisChart />
+                {typeof props.sentiment !== 'undefined' && (
+                    <SentimentAnalysisChart sentiment = {props.sentiment}/>
+                )}
                     <div class="legends">                        
                         <div class="legend-container">
                             <div class="legend"></div>
-                            <p><strong>80%</strong> positive</p>
+                            <p><strong>{props.sentiment.positive}%</strong> positive</p>
                         </div>
                         <div class="legend-container">
                             <div class="legend"></div>
-                            <p><strong>10%</strong> neutral</p>
+                            <p><strong>{props.sentiment.neutral}%</strong> neutral</p>
                         </div>
                         <div class="legend-container">
                             <div class="legend"></div>
-                            <p><strong>10%</strong> negative</p>
+                            <p><strong>{props.sentiment.negative}%</strong> negative</p>
                         </div>
                     </div>
-                    <p class="help">Based on likes, dislikes, and comments, viewers found your video <strong>mostly positive.</strong> <img src="help-circle.svg" alt="help"></img> </p>
+                    <p class="help">Based on likes, dislikes, and comments, viewers found your video 
+                        <strong>
+                            {props.sentiment.neutral > props.sentiment.positive + props.sentiment.negative ? 
+                            ' mostly neutral. ' 
+                            : 
+                            (props.sentiment.postive > props.sentiment.negative ? ' mostly positive.' : ' mostly negative.')}
+                        </strong>
+                    </p>
                 </div>
             </section>
         </StyledSentimentAnalysis>

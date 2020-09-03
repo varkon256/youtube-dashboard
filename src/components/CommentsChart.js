@@ -14,11 +14,11 @@ function CommentsChart(props) {
     gradientFill.addColorStop(0, "rgba(255, 215, 215, 0.31)");
     let chart = ()=>{
         setChartData({
-            labels: ["0:00",'1:30','2:00','2:30','3:00'],
+            labels: props.timestamps.list,
             datasets: [
             {
                 label: "Comments",
-                data: [10,20,0,30,80],
+                data: props.timestamps.count,
                 backgroundColor: gradientFill,
                 borderColor:  ["rgba(207, 42, 42, 0.79)"],
                 pointBorderColor: "rgba(207, 42, 42, 0.79)",
@@ -37,12 +37,11 @@ function CommentsChart(props) {
     useEffect(()=>{
         chart();
     },[])
-    
   return (
         <StyledCommentsChart>
             <div>
                 <Line 
-                    data={ chartData }
+                    data={chartData}
                     height={300}
                     options= {
                         {

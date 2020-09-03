@@ -8,14 +8,14 @@ import {
 } from "react-router-dom";
 import CommentFetcher from './components/CommentFetcher';
 import Dashboard from './components/Dashboard';
-import Login from './components/Login';
+import Home from './components/Home';
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/"><Login/></Route>
-        <Route exact path="/dashboard"><Dashboard/></Route>
+        <Route exact path="/"><Home/></Route>
+        <Route exact path="/dashboard/:id"><Dashboard/></Route>
       </Switch>
     </Router>
   );

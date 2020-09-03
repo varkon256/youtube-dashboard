@@ -13,7 +13,7 @@ from textblob import TextBlob
 
 
 
-CLIENT_SECRETS_FILE = "desktop.json" #make sure the folder is in the same directory
+CLIENT_SECRETS_FILE = "/Users/kondavarsha/Downloads/client_secret.json"
 SCOPES = "https://www.googleapis.com/auth/youtube.force-ssl"
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
@@ -34,15 +34,6 @@ def get_authenticated_service():
         with open('token.pickle', 'wb') as token:
             pickle.dump(credentials, token)
     return build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
-
-
-def write_to_csv(comments):
-    with open('comments.csv', 'w') as comments_file:
-        comments_writer = csv.writer(comments_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        comments_writer.writerow(['Video ID', 'Title', 'Comment'])
-        for row in comments:
-            comments_writer.writerow(list(row))
-
 
 def get_video_comments(service, **kwargs):
     comments = []
@@ -89,8 +80,8 @@ def run_script(videoId):
     return comments
 
 
-def GetPolarity(videoId):
-    comms = run_script(videoId)
+def GetPolarity(comments):
+    comms = comments
     pols = []
     for comm in comms:
         pols.append(TextBlob(comm).sentiment.polarity)

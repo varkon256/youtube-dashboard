@@ -20,7 +20,7 @@ const StyledVideoHighlights = styled.div`
     color: #343434;
   }
   .content{
-    margin: 10%;
+    margin: 4%;
     max-width: 80%
   }
 `;
@@ -31,8 +31,12 @@ function VideoHighlights(props) {
           <section>
             <h2>Video Highlights</h2>
             <div class="content">
-              <CommentsCharts />
-              <CommentsList />
+              {typeof props.data.timestamps !== 'undefined' && (
+                <CommentsCharts timestamps= {props.data.timestamps}/>
+              )}
+              {typeof props.data.comments !== 'undefined' && (
+                <CommentsList list= {props.data.comments}/>
+              )}
             </div>
           </section>
         </StyledVideoHighlights>

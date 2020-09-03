@@ -20,7 +20,9 @@ const StyledQuestonCategories = styled.div`
         margin-bottom: 0;
     }
     .content{
-        margin: 10%;
+        margin: 1%;
+        display:flex;
+        flex-direction: row;
         max-width: 80%;
     }
     .subtitle{
@@ -43,14 +45,23 @@ function QuestonCategories(props) {
                 <div class="titleContainer">
                     <div>
                         <h2>Question Categories</h2>
-                        <p class="subtitle">5 categories, 19 questions</p>
+                        <p class="subtitle">2 categories, 5 questions</p>
                     </div>
-                    <div class="listToggle">
+                    {/* <div class="listToggle">
                         list Toggle
-                    </div>
+                    </div> */}
                 </div>
                 <div class="content">
-                    <QuestionCard />
+                    <QuestionCard name = "Video Details" count = {2} 
+                    list = {[
+                        'why does the thumbnail look like something out of a genius interview? 😂',
+                        'why was this video shorted than usual?'
+                        ]}/>
+                    <QuestionCard name = "Video Content" count = {3} list = {[
+                        'if you like youtube as a way to just stay busy, why stop? ',
+                        'Why is this kind of honest Q&A so rare in Youtube?',
+                        'I gotta know, why don\'t you make videos with Cryaotic anymore?'
+                    ]}/>
                 </div>
             </section>
         </StyledQuestonCategories>

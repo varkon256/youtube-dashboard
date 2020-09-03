@@ -5,7 +5,7 @@ import styled from "styled-components";
 const StyledQuestionCard = styled.div`
     width: 300px;
     max-height: 600px;
-    padding: 50px;
+    padding: 10px;
     border-radius: 20px;
     .cardHeading{
         background: rgba(207,42,42,0.79);
@@ -43,17 +43,15 @@ function QuestionCard(props) {
     return (
             <StyledQuestionCard>
                 <div class="cardHeading">
-                    <h2>Question Category</h2>
-                    <p>6 questions</p>
+                    <h2>{props.name}</h2>
+                    <p>{props.count} questions</p>
                 </div>
                 <div class="cardContent">
-                    <p>When did you two meet?</p>
-                    <p>How long have you been dating?</p>
-                    <p>Are you married?</p>
-                    <p>Are you seeing anyone?</p>
-                    <p>What’s your biggest pet peeve?</p>
-                    <p>What do you love about him/her?</p>
-                    <p>What do you love about him/her?</p>
+                    {
+                  props.list.map(question => ( 
+                        <p>{question}</p>
+                  ))
+                    }
                 </div>   
 
             </StyledQuestionCard>
