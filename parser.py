@@ -7,7 +7,6 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 import csv
 from dateutil.parser import parse
 from textblob import TextBlob
-import config
 
 SCOPES = "https://www.googleapis.com/auth/youtube.force-ssl"
 API_SERVICE_NAME = "youtube"
