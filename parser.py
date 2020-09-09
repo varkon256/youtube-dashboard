@@ -12,7 +12,7 @@ import config
 SCOPES = "https://www.googleapis.com/auth/youtube.force-ssl"
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
-DEVELOPER_KEY = config.api_key
+DEVELOPER_KEY = os.environ['API_KEY']
 
 def get_service():
     return build(API_SERVICE_NAME, API_VERSION, developerKey=DEVELOPER_KEY)

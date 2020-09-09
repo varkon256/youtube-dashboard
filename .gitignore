@@ -28,4 +28,4 @@ yarn-error.log*
 .vscode
 __pycache__
 venv
-token.pickle
+token.pickle.env
