@@ -1,9 +1,0 @@
-{"installed":{
-    "client_id":"219949805535-d7h0527fhiofmmle36tn0vcb6dgbi2la.apps.googleusercontent.com",
-    "project_id":"adept-cascade-288303",
-    "auth_uri":"https://accounts.google.com/o/oauth2/auth",
-    "token_uri":"https://oauth2.googleapis.com/token",
-    "auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
-    "client_secret":"sBxJJ_xX1ROa1PQqytX7LImo",
-    "redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}
-}
