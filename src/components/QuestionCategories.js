@@ -42,22 +42,22 @@ function QuestonCategories(props) {
   return (
         <StyledQuestonCategories>
             <section>
-                <div class="titleContainer">
+                <div className="titleContainer">
                     <div>
                         <h2>Question Categories</h2>
-                        <p class="subtitle">2 categories, 5 questions</p>
+                        <p className="subtitle">2 categories, 5 questions</p>
                     </div>
                     {/* <div class="listToggle">
                         list Toggle
                     </div> */}
                 </div>
-                <div class="content">
-                    <QuestionCard name = "Video Details" count = {2} 
+                <div className="content">
+                    <QuestionCard categoryName = "Video Details" count = {2} 
                     list = {[
                         'why does the thumbnail look like something out of a genius interview? 😂',
                         'why was this video shorted than usual?'
                         ]}/>
-                    <QuestionCard name = "Video Content" count = {3} list = {[
+                    <QuestionCard categoryName = "Video Content" count = {3} list = {[
                         'if you like youtube as a way to just stay busy, why stop? ',
                         'Why is this kind of honest Q&A so rare in Youtube?',
                         'I gotta know, why don\'t you make videos with Cryaotic anymore?'

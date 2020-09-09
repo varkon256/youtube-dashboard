@@ -1,7 +1,4 @@
-# pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-"""Install all the requirements and importations"""
 import os
-import pickle
 import google.oauth2.credentials
 from googleapiclient.errors import HttpError
 from googleapiclient.discovery import build
@@ -10,30 +7,15 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 import csv
 from dateutil.parser import parse
 from textblob import TextBlob
+import config
 
-
-
-CLIENT_SECRETS_FILE = "/Users/kondavarsha/Downloads/client_secret.json"
 SCOPES = "https://www.googleapis.com/auth/youtube.force-ssl"
 API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
+DEVELOPER_KEY = config.api_key
 
-
-def get_authenticated_service():
-    credentials = None
-    if os.path.exists('token.pickle'):
-        with open('token.pickle', 'rb') as token:
-            credentials = pickle.load(token)
-
-    if not credentials or not credentials.valid:
-        if credentials and credentials.expired and credentials.refesh_token:
-            credentials.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(CLIENT_SECRETS_FILE, SCOPES)
-            credentials = flow.run_console()
-        with open('token.pickle', 'wb') as token:
-            pickle.dump(credentials, token)
-    return build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
+def get_service():
+    return build(API_SERVICE_NAME, API_VERSION, developerKey=DEVELOPER_KEY)
 
 def get_video_comments(service, **kwargs):
     comments = []
@@ -68,17 +50,16 @@ def get_video_details(service, **kwargs):
 
 def run_details_script(videoId):
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-    service = get_authenticated_service()
+    service = get_service()
     details = get_video_details(service, part=['snippet', 'statistics'], id=videoId)
     return details
 
 
 def run_script(videoId):
     os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-    service = get_authenticated_service()
-    comments = get_video_comments(service, part='snippet', videoId=videoId, textFormat='plainText')
+    service = get_service()
+    comments = get_video_comments(service, part='snippet', videoId=videoId, textFormat='plainText', maxResults=10000)
     return comments
-
 
 def GetPolarity(comments):
     comms = comments
@@ -86,13 +67,3 @@ def GetPolarity(comments):
     for comm in comms:
         pols.append(TextBlob(comm).sentiment.polarity)
     return pols
-
-
-
-
-
-
-if __name__ == "__main__":
-    final_comment = run_script()
-    print(final_comment)
-    print()

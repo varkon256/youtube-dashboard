@@ -4,9 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
-import CommentFetcher from './components/CommentFetcher';
 import Dashboard from './components/Dashboard';
 import Home from './components/Home';
 

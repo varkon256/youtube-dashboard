@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import styled from "styled-components";
 const StyledCommentsList = styled.div`
   width: 100%;
@@ -9,16 +9,17 @@ const StyledCommentsList = styled.div`
   overflow-y: scroll;
   border-radius: 10px;
 `;
-
+const Comment = styled.div`
+`;
 function CommentsList(props) {
     return (
             <StyledCommentsList>
                 <div>
                   {
                   props.list.map(comment => ( 
-                    <div>
+                    <Comment>
                         <p>{comment}</p>
-                    </div> 
+                    </Comment>
                   ))
                   }
                 </div>

@@ -37,12 +37,26 @@ const StyledSentimentAnalysis = styled.div`
         flex-direction: row;
         justify-content: space-around; 
     }
-    .legend{
+    .legend-positive{
         margin: 5px;
         width: 20px;
         height: 20px;
         border-radius: 5px;
-        background: red;
+        background: #F03030;
+    }
+    .legend-neutral{
+        margin: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        background: #F09090;
+    }
+    .legend-negative{
+        margin: 5px;
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        background: #F0C0C0;
     }
     .legend-container{
         display: flex;
@@ -56,25 +70,25 @@ function SentimentAnalysis(props) {
         <StyledSentimentAnalysis>
             <section>
                 <h2>Viewer Sentiment Analysis</h2>
-                <div class="content">
+                <div className="content">
                 {typeof props.sentiment !== 'undefined' && (
                     <SentimentAnalysisChart sentiment = {props.sentiment}/>
                 )}
-                    <div class="legends">                        
-                        <div class="legend-container">
-                            <div class="legend"></div>
+                    <div className="legends">                        
+                        <div className="legend-container">
+                            <div className="legend-positive"></div>
                             <p><strong>{props.sentiment.positive}%</strong> positive</p>
                         </div>
-                        <div class="legend-container">
-                            <div class="legend"></div>
+                        <div className="legend-container">
+                            <div className="legend-neutral"></div>
                             <p><strong>{props.sentiment.neutral}%</strong> neutral</p>
                         </div>
-                        <div class="legend-container">
-                            <div class="legend"></div>
+                        <div className="legend-container">
+                            <div className="legend-negative"></div>
                             <p><strong>{props.sentiment.negative}%</strong> negative</p>
                         </div>
                     </div>
-                    <p class="help">Based on likes, dislikes, and comments, viewers found your video 
+                    <p className="help">Based on likes, dislikes, and comments, viewers found your video 
                         <strong>
                             {props.sentiment.neutral > props.sentiment.positive + props.sentiment.negative ? 
                             ' mostly neutral. ' 

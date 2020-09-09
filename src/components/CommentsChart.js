@@ -45,6 +45,20 @@ function CommentsChart(props) {
                     height={300}
                     options= {
                         {
+                            scales: {
+                                xAxes: [{
+                                    ticks: {
+                                        beginAtZero: true,
+                                        autoSkip: true,
+                                        maxTicksLimit: 20                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        maxTicksLimit:10,
+                                        beginAtZero: true
+                                    }
+                                }]
+                            },
                             responsive: true,
                             maintainAspectRatio: false
                         }

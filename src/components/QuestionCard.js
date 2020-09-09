@@ -42,11 +42,11 @@ const StyledQuestionCard = styled.div`
 function QuestionCard(props) {
     return (
             <StyledQuestionCard>
-                <div class="cardHeading">
-                    <h2>{props.name}</h2>
+                <div className="cardHeading">
+                    <h2>{props.categoryName}</h2>
                     <p>{props.count} questions</p>
                 </div>
-                <div class="cardContent">
+                <div className="cardContent">
                     {
                   props.list.map(question => ( 
                         <p>{question}</p>

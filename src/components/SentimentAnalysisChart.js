@@ -11,7 +11,7 @@ class SentimentAnalysisChart extends Component {
                     {
                         label:  'Positive',
                         stack: '1',
-                        data: [23],  // *** replace this with data from API ***
+                        data: [this.props.sentiment.positive],  // *** replace this with data from API ***
                         backgroundColor: [
                             // '#F0C0C0',  this is the full color palette if we use 5 categories
                             // '#F0A8A8',
@@ -23,7 +23,7 @@ class SentimentAnalysisChart extends Component {
                     {
                         label: 'Neutral',
                         stack: '1',
-                        data: [71],  // *** replace this with data from API ***
+                        data: [this.props.sentiment.neutral],  // *** replace this with data from API ***
                         backgroundColor: [
                             '#F09090',
                         ]
@@ -31,7 +31,7 @@ class SentimentAnalysisChart extends Component {
                     {
                         label:  'Negative',
                         stack: '1',
-                        data: [5],  // *** replace this with data from API ***
+                        data: [this.props.sentiment.negative],  // *** replace this with data from API ***
                         backgroundColor: [
                             '#F0C0C0',
                         ]
@@ -48,6 +48,9 @@ class SentimentAnalysisChart extends Component {
                     data={this.state.chartData}
                     height={40}
                     options={{
+                        tooltips: {
+                            enabled: false
+                        },
                         scales: {
                             xAxes: [{
                                 display: false,

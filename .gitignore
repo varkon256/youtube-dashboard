@@ -11,6 +11,9 @@
 # production
 /build
 
+# config
+config.py 
+
 # misc
 .DS_Store
 .env.local
@@ -24,4 +27,5 @@ yarn-error.log*
 
 .vscode
 __pycache__
+venv
 token.pickle
